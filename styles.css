@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(145, 110, 64);
+    color: white;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+}
+
+table {
+    width: 95%;
+    text-align: center;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+table > caption {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+#add-new-btn {
+    all: unset;
+    display: block;
+    font-size: 1rem;
+    padding: 0.2rem 0.6rem;
+    background-color: white;
+    border: 2px solid rgb(20, 35, 71);
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto;
+}
+
+tr {
+    border-bottom: 2px solid rgb(20, 35, 71);
+}
+
+td > img {
+    width: 4rem;
+    
+}
