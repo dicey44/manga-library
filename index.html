@@ -11,13 +11,13 @@
         <div>My Manga Collection</div>
         <div class="caption-text">What Manga Have I read?</div>
     </header>
-        
-        <button id="add-new-btn">Add New</button>
+    <div> 
+        <button class="add-new-btn">Add New</button>
         <div id="status-div">
             <h1>Edit Status</h1>
-            <button class="status-menu-btn planned">Planned</button>
-            <button class="status-menu-btn reading">Reading</button>
-            <button class="status-menu-btn finished">Finished</button>
+            <button id="set-planned-btn" class="status-menu-btn planned">Planned</button>
+            <button id="set-reading-btn" class="status-menu-btn reading">Reading</button>
+            <button id="set-finished-btn" class="status-menu-btn finished">Finished</button>
         </div>
         <table >
             
@@ -30,13 +30,13 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="list">
                 <tr>
                     <td>1</td>
                     <td><img src="https://cdn.myanimelist.net/r/192x272/images/manga/2/52283.webp?s=8918f0140536bcc01c2f09c937d8e0fe"/></td>
                     <td>March Comes in Like a Lion</td>
                     <td>Umino, Chica</td>
-                    <td><button class="status-btn reading">Reading</button></td>
+                    <td><button id="test" class="status-btn reading">Reading</button></td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -61,7 +61,7 @@
                 </tr>
             </tbody>
         </table>
-        <button id="add-new-btn">Add New</button>
+        <button class="add-new-btn">Add New</button>
     </div>
     <script src="script.js"></script>
 </body>
