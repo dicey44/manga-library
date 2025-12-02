@@ -116,9 +116,9 @@ td > img {
     align-items: center;
     justify-content: center;
     gap: 15px;
-    width: 25%;
+    width: 50%;
     max-width: 400px;
-    height: 40%;
+    height: 50%;
     background-color: white;
     border: 2px solid var(--color-primary);
     border-radius: 10px;
