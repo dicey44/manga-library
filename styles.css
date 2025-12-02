@@ -107,21 +107,9 @@ td > img {
 }
 
 #status-div {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
     width: clamp(250px, 50%, 350px);
     height: clamp(300px, 50%, 450px);
-    background-color: white;
-    border: 2px solid var(--color-primary);
-    border-radius: 10px;
-    z-index: 2;
 }
 
 #status-div button {
@@ -140,4 +128,53 @@ td > img {
     color: white;
     transition: .2s;
     cursor: pointer;
+}
+
+.menu-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background-color: white;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    z-index: 2;
+}
+
+#add-manga-form {
+    display: flex;
+    width: clamp(250px, 50%, 350px);
+    height: clamp(300px, 50%, 450px);
+    align-items: flex-start;
+    
+}
+
+#add-manga-form legend {
+    font-size: 2.5rem;
+    margin: 10px auto auto auto;
+}
+
+#add-manga-form input {
+    font-size: 1.1rem;
+    margin: 0 auto;
+    width: 98%;
+    padding: 4px 0;
+}
+
+#add-manga-form select {
+    margin: 0 auto auto auto;
+    width: 98%;
+    font-size: 1.1rem;
+    padding: 4px 0;
+}
+
+#add-manga-form button {
+    font-size: 1.2rem;
+    margin: 0 auto 15px auto;
+    padding: 10px 0;
+    width: 98%;
 }
