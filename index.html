@@ -13,14 +13,7 @@
     </header>
     <div> 
         <button class="add-new-btn">Add New</button>
-        <div id="status-div">
-            <h1>Edit Status</h1>
-            <button id="set-planned-btn" class="status-menu-btn planned">Planned</button>
-            <button id="set-reading-btn" class="status-menu-btn reading">Reading</button>
-            <button id="set-finished-btn" class="status-menu-btn finished">Finished</button>
-        </div>
         <table >
-            
             <thead>
                 <tr>
                     <th>#</th>
@@ -42,6 +35,23 @@
         </table>
         <button class="add-new-btn">Add New</button>
     </div>
+    <div id="status-div" class="menu-container">
+            <h1>Edit Status</h1>
+            <button id="set-planned-btn" class="status-menu-btn planned">Planned</button>
+            <button id="set-reading-btn" class="status-menu-btn reading">Reading</button>
+            <button id="set-finished-btn" class="status-menu-btn finished">Finished</button>
+    </div>
+    <form id="add-manga-form" class="menu-container">
+        <legend>New Manga</legend>
+        <input type="text" name="title" placeholder="Title" required>
+        <input type="text" name="author" placeholder="Author" required>
+        <select name="status" required>
+            <option value="planned">Planned</option>
+            <option value="reading">Reading</option>
+            <option value="finished">Finished</option>
+        </select> 
+        <button type="submit">Add Manga</button>
+    </form>
     <script src="script.js"></script>
 </body>
 </html>
