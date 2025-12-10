@@ -7,10 +7,10 @@ const setReadingBtn = document.getElementById("set-reading-btn");
 const setFinishedBtn = document.getElementById("set-finished-btn");
 const list = document.getElementById("list");
 const addMangaForm = document.getElementById("add-manga-form");
+const darkDiv = document.querySelector(".dark-background-effect");
 
 
 const library = [];
-let entryNumber = 0;
 let selectedMangaId = null;
 
 function Manga(image, title, author, status) {
@@ -22,56 +22,65 @@ function Manga(image, title, author, status) {
     this.info = () => {
         return `${this.title} by ${this.author}. ${this.status}`;
     }
-    this.setPlanned = () => {
-        this.status = "Planned";
+    this.entryNumber = () => {
+        return library.findIndex(item => item.id === this.id) + 1;
     }
 }
 
 const openAddManga = () => {
+    closeStatusMenu();
     addMangaForm.style.display = "flex";
+    darkDiv.style.display = "block";
 }
 
 const closeAddManga = () => {
     addMangaForm.style.display = "none";
+    darkDiv.style.display = "none";
 }
 
 function createManga(image, title, author, status) {
-    entryNumber++;
 
     const newManga = new Manga(image, title, author, status);
 
     const row = document.createElement("tr");
     row.dataset.id = newManga.id;
+    library.push(newManga);
+    console.log(library); 
+
     if (!image) {
         row.innerHTML = `
-        <td>${entryNumber}</td>
+        <td>${newManga.entryNumber()}</td>
         <td><img src="https://static.vecteezy.com/system/resources/previews/022/059/000/non_2x/no-image-available-icon-vector.jpg"/></td>
         <td>${newManga.title}</td>
         <td>${newManga.author}</td>
         <td><button class="status-btn ${newManga.status.toLowerCase()}">${newManga.status}</button></td>
+        <td><svg class="remove-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Delete</title><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" /></svg></td>
     `;
     } else {
         row.innerHTML = `
-        <td>${entryNumber}</td>
+        <td>${newManga.entryNumber()}</td>
         <td><img src="${newManga.image}"/></td>
         <td>${newManga.title}</td>
         <td>${newManga.author}</td>
         <td><button class="status-btn ${newManga.status.toLowerCase()}">${newManga.status}</button></td>
+        <td><svg class="remove-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Delete</title><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" /></svg></td>
     `;
     }
     
     list.appendChild(row);
-    library.push(newManga);
-    console.log(library);
+    updateEntryNumbers();
 }
 
 const openStatusMenu = () => {
+    closeAddManga();
     statusDiv.style.display = "flex";
+    darkDiv.style.display = "block";
     console.log(selectedMangaId);
 } 
 
 const closeStatusMenu = () => {
     statusDiv.style.display = "none";
+    darkDiv.style.display = "none";
 }
 
 const editStatus = (selected) => {
@@ -129,6 +138,28 @@ const editStatus = (selected) => {
 
 }
 
+const updateEntryNumbers = () => {
+    const rows = list.querySelectorAll("tr");
+    rows.forEach((row, index) => {
+        const firstCell = row.querySelector("td");
+        if (firstCell) {
+            firstCell.textContent = index + 1;
+        }
+    });
+}
+
+const deleteManga = () => {
+    const mangaToChange = document.querySelector(`tr[data-id="${selectedMangaId}"]`);
+    const mangaIndex = library.findIndex(m => m.id === selectedMangaId);
+    if (mangaIndex !== -1) {
+        library.splice(mangaIndex, 1);
+    }
+    mangaToChange.remove();
+    console.log(library);
+    updateEntryNumbers();
+    selectedMangaId = null;
+}
+
 
 //Event Listeners
 
@@ -140,6 +171,11 @@ list.addEventListener("click", (e) => {
     if (e.target.classList.contains("status-btn")) {
         selectedMangaId = id;
         openStatusMenu();
+    }
+
+    if (e.target.classList.contains("remove-svg")) {
+        selectedMangaId = id;
+        deleteManga();
     }
     return;
 });
@@ -164,9 +200,29 @@ addMangaForm.addEventListener("submit", (event) => {
     const image = event.target.elements.image.value;
     const title = event.target.elements.title.value;
     const author = event.target.elements.author.value;
-    const status = event.target.elements.status.value;
+    let status = event.target.elements.status.value;
+    status = status.charAt(0).toUpperCase() + status.slice(1);
 
     createManga(image, title, author, status);
 
     closeAddManga();
 });
+
+document.addEventListener("click", (e) => {
+
+    if (statusDiv.contains(e.target)) return;
+
+    if (e.target.classList.contains("status-btn")) return;
+
+    if (addMangaForm.contains(e.target)) return;
+
+    if (e.target.classList.contains("add-new-btn")) return;
+
+    if (statusDiv.style.display === "flex") {closeStatusMenu()};
+
+    if (addMangaForm.style.display === "flex") {closeAddManga()}
+
+    return
+});
+
+updateEntryNumbers();

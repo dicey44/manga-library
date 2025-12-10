@@ -1,6 +1,7 @@
 :root {
     --color-primary: rgb(20, 35, 71);
     --color-background: rgb(145, 110, 64);
+    --color-background-greyed: rgba(58, 58, 58, 0.52);
 }
 
 * {
@@ -178,4 +179,20 @@ td > img {
     margin: 0 auto 15px auto;
     padding: 10px 0;
     width: 98%;
+}
+
+.remove-svg {
+    width: 30px;
+    fill: var(--color-primary);
+    cursor: pointer;
+}
+
+.dark-background-effect {
+    background-color: var(--color-background-greyed);
+    position: absolute;
+    display: none;
+    pointer-events: none;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
 }
