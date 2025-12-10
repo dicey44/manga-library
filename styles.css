@@ -146,7 +146,7 @@ td > img {
 }
 
 #add-manga-form {
-    display: flex;
+    display: none;
     width: clamp(250px, 50%, 350px);
     height: clamp(300px, 50%, 450px);
     align-items: flex-start;
@@ -161,8 +161,9 @@ td > img {
 #add-manga-form input {
     font-size: 1.1rem;
     margin: 0 auto;
-    width: 98%;
+    width: 96%;
     padding: 4px 0;
+    padding-left: 5px;
 }
 
 #add-manga-form select {

@@ -6,13 +6,15 @@ const setPlannedBtn = document.getElementById("set-planned-btn");
 const setReadingBtn = document.getElementById("set-reading-btn");
 const setFinishedBtn = document.getElementById("set-finished-btn");
 const list = document.getElementById("list");
+const addMangaForm = document.getElementById("add-manga-form");
 
 
 const library = [];
 let entryNumber = 0;
 let selectedMangaId = null;
 
-function Manga(title, author, status) {
+function Manga(image, title, author, status) {
+    this.image = image;
     this.title = title;
     this.author = author;
     this.status = status;
@@ -25,20 +27,39 @@ function Manga(title, author, status) {
     }
 }
 
-function createManga(title, author, status) {
+const openAddManga = () => {
+    addMangaForm.style.display = "flex";
+}
+
+const closeAddManga = () => {
+    addMangaForm.style.display = "none";
+}
+
+function createManga(image, title, author, status) {
     entryNumber++;
 
-    const newManga = new Manga("Naruto", "Bob", "Finished");
+    const newManga = new Manga(image, title, author, status);
 
     const row = document.createElement("tr");
     row.dataset.id = newManga.id;
-    row.innerHTML = `
+    if (!image) {
+        row.innerHTML = `
         <td>${entryNumber}</td>
         <td><img src="https://static.vecteezy.com/system/resources/previews/022/059/000/non_2x/no-image-available-icon-vector.jpg"/></td>
         <td>${newManga.title}</td>
         <td>${newManga.author}</td>
         <td><button class="status-btn ${newManga.status.toLowerCase()}">${newManga.status}</button></td>
     `;
+    } else {
+        row.innerHTML = `
+        <td>${entryNumber}</td>
+        <td><img src="${newManga.image}"/></td>
+        <td>${newManga.title}</td>
+        <td>${newManga.author}</td>
+        <td><button class="status-btn ${newManga.status.toLowerCase()}">${newManga.status}</button></td>
+    `;
+    }
+    
     list.appendChild(row);
     library.push(newManga);
     console.log(library);
@@ -124,7 +145,7 @@ list.addEventListener("click", (e) => {
 });
 
 addNewBtn.forEach(btn => {
-    btn.addEventListener("click", createManga);
+    btn.addEventListener("click", openAddManga);
 });
 
 statusDiv.addEventListener("click", (e) => {
@@ -135,4 +156,17 @@ statusDiv.addEventListener("click", (e) => {
     } else if (e.target.classList.contains("finished")) {
         editStatus("finished");
     }
+});
+
+addMangaForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const image = event.target.elements.image.value;
+    const title = event.target.elements.title.value;
+    const author = event.target.elements.author.value;
+    const status = event.target.elements.status.value;
+
+    createManga(image, title, author, status);
+
+    closeAddManga();
 });
