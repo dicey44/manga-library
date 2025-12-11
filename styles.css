@@ -9,6 +9,10 @@
     padding: 0;
 }
 
+body {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
 header {
     background-color: var(--color-background);
     color: white;

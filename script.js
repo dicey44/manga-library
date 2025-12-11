@@ -41,9 +41,13 @@ const closeAddManga = () => {
     closeDarkDiv();
 }
 
-function createManga(image, title, author, status) {
+function createManga(image, title, author, status, id = null) {
 
     const newManga = new Manga(image, title, author, status);
+
+    if(id) {
+        newManga.id = id;
+    }
 
     const row = document.createElement("tr");
     row.dataset.id = newManga.id;
@@ -173,10 +177,28 @@ const deleteManga = () => {
     console.log(library);
     updateEntryNumbers();
     selectedMangaId = null;
+    saveLibrary();
+}
+
+const saveLibrary = () => {
+    localStorage.setItem("myLibrary", JSON.stringify(library));
+}
+
+const loadLibrary = () => {
+    const data = localStorage.getItem("myLibrary");
+
+    if (data) {
+        const loaded = JSON.parse(data);
+        loaded.forEach(m => {
+            createManga(m.image, m.title, m.author, m.status, m.id);
+        });
+    }
 }
 
 
 //Event Listeners
+
+window.addEventListener("DOMContentLoaded", loadLibrary);
 
 list.addEventListener("click", (e) => {
     const row = e.target.closest("tr");
@@ -221,6 +243,8 @@ addMangaForm.addEventListener("submit", (event) => {
     createManga(image, title, author, status);
 
     closeAddManga();
+
+    saveLibrary();
 });
 
 document.addEventListener("click", (e) => {
