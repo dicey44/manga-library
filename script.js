@@ -229,6 +229,7 @@ statusDiv.addEventListener("click", (e) => {
     } else if (e.target.classList.contains("finished")) {
         editStatus("finished");
     }
+    saveLibrary();
 });
 
 addMangaForm.addEventListener("submit", (event) => {
