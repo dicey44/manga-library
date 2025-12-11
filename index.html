@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-    <div class="dark-background-effect"></div>
+    <div id="dark-div" class="dark-background-effect closed"></div>
     <header>
         <div>My Manga Collection</div>
         <div class="caption-text">What Manga Have I read?</div>
@@ -37,13 +37,13 @@
         </table>
         <button class="add-new-btn">Add New</button>
     </div>
-    <div id="status-div" class="menu-container">
+    <div id="status-div" class="menu-container closed">
             <h1>Edit Status</h1>
             <button id="set-planned-btn" class="status-menu-btn planned">Planned</button>
             <button id="set-reading-btn" class="status-menu-btn reading">Reading</button>
             <button id="set-finished-btn" class="status-menu-btn finished">Finished</button>
     </div>
-    <form id="add-manga-form" class="menu-container">
+    <form id="add-manga-form" class="menu-container closed">
         <legend>New Manga</legend>
         <input type="text" name="title" placeholder="Title" required>
         <input type="text" name="author" placeholder="Author" required>

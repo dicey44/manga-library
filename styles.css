@@ -108,9 +108,10 @@ td > img {
 }
 
 #status-div {
-    display: none;
+    display: flex;
     width: clamp(250px, 50%, 350px);
     height: clamp(300px, 50%, 450px);
+    transition: 500ms;
 }
 
 #status-div button {
@@ -147,10 +148,11 @@ td > img {
 }
 
 #add-manga-form {
-    display: none;
+    display: flex;
     width: clamp(250px, 50%, 350px);
     height: clamp(300px, 50%, 450px);
     align-items: flex-start;
+    transition: 300ms;
     
 }
 
@@ -190,9 +192,19 @@ td > img {
 .dark-background-effect {
     background-color: var(--color-background-greyed);
     position: absolute;
-    display: none;
+    display: block;
     pointer-events: none;
+    transition: 300ms;
     height: 100vh;
     width: 100vw;
     z-index: 1;
+}
+
+.open {
+    opacity: 1;
+}
+
+.closed {
+    opacity: 0;
+    pointer-events: none;
 }

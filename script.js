@@ -7,7 +7,7 @@ const setReadingBtn = document.getElementById("set-reading-btn");
 const setFinishedBtn = document.getElementById("set-finished-btn");
 const list = document.getElementById("list");
 const addMangaForm = document.getElementById("add-manga-form");
-const darkDiv = document.querySelector(".dark-background-effect");
+const darkDiv = document.getElementById("dark-div");
 
 
 const library = [];
@@ -29,13 +29,16 @@ function Manga(image, title, author, status) {
 
 const openAddManga = () => {
     closeStatusMenu();
-    addMangaForm.style.display = "flex";
-    darkDiv.style.display = "block";
+    addMangaForm.classList.remove("closed");
+    addMangaForm.classList.add("open");
+    openDarkDiv();
+
 }
 
 const closeAddManga = () => {
-    addMangaForm.style.display = "none";
-    darkDiv.style.display = "none";
+    addMangaForm.classList.remove("open");
+    addMangaForm.classList.add("closed");
+    closeDarkDiv();
 }
 
 function createManga(image, title, author, status) {
@@ -73,14 +76,26 @@ function createManga(image, title, author, status) {
 
 const openStatusMenu = () => {
     closeAddManga();
-    statusDiv.style.display = "flex";
-    darkDiv.style.display = "block";
+    statusDiv.classList.remove("closed");
+    statusDiv.classList.add("open");
+    openDarkDiv();
     console.log(selectedMangaId);
 } 
 
 const closeStatusMenu = () => {
-    statusDiv.style.display = "none";
-    darkDiv.style.display = "none";
+    statusDiv.classList.remove("open");
+    statusDiv.classList.add("closed");
+    closeDarkDiv();
+}
+
+const openDarkDiv = () => {
+    darkDiv.classList.remove("closed");
+    darkDiv.classList.add("open");
+}
+
+const closeDarkDiv = () => {
+    darkDiv.classList.remove("open");
+    darkDiv.classList.add("closed");
 }
 
 const editStatus = (selected) => {
@@ -218,9 +233,9 @@ document.addEventListener("click", (e) => {
 
     if (e.target.classList.contains("add-new-btn")) return;
 
-    if (statusDiv.style.display === "flex") {closeStatusMenu()};
+    if (statusDiv.classList.contains("open")) {closeStatusMenu()};
 
-    if (addMangaForm.style.display === "flex") {closeAddManga()}
+    if (addMangaForm.classList.contains("open")) {closeAddManga()};
 
     return
 });
