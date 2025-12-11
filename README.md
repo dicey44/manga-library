@@ -1,2 +1,2 @@
-# library-project
-A small library project using JS
+# Manga-Library
+A library to track and store the manga that you read.
