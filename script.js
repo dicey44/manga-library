@@ -29,6 +29,12 @@ function Manga(image, title, author, status) {
 
 const openAddManga = () => {
     closeStatusMenu();
+    enableForm(addMangaForm);
+    function enableForm(formElement) {
+        formElement.querySelectorAll("input, textarea, select, button").forEach(el => {
+        el.disabled = false;
+        });
+    }
     addMangaForm.classList.remove("closed");
     addMangaForm.classList.add("open");
     openDarkDiv();
@@ -38,6 +44,13 @@ const openAddManga = () => {
 const closeAddManga = () => {
     addMangaForm.classList.remove("open");
     addMangaForm.classList.add("closed");
+    addMangaForm.reset();
+    disableForm(addMangaForm);
+    function disableForm(formElement) {
+    formElement.querySelectorAll("input, textarea, select, button").forEach(el => {
+    el.disabled = true;
+    });
+    }
     closeDarkDiv();
 }
 
@@ -234,7 +247,6 @@ statusDiv.addEventListener("click", (e) => {
 
 addMangaForm.addEventListener("submit", (event) => {
     event.preventDefault();
-
     const image = event.target.elements.image.value;
     const title = event.target.elements.title.value;
     const author = event.target.elements.author.value;
@@ -243,8 +255,8 @@ addMangaForm.addEventListener("submit", (event) => {
 
     createManga(image, title, author, status);
 
-    closeAddManga();
-
+    closeAddManga(); 
+    
     saveLibrary();
 });
 

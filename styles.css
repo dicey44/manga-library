@@ -137,7 +137,7 @@ td > img {
 }
 
 .menu-container {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -195,7 +195,7 @@ td > img {
 
 .dark-background-effect {
     background-color: var(--color-background-greyed);
-    position: absolute;
+    position: fixed;
     display: block;
     pointer-events: none;
     transition: 300ms;
